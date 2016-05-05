@@ -18,6 +18,7 @@ func3<-function(y){if(nchar(y)==0){print("NA")} else print(y)}
 titanic4<-bind_cols(select(titanic2, -boat), transmute(titanic2, boat_new=lapply(as.character(titanic2$boat), func3)))
 
 # Task 4 - Add a binary column to indicate which passengers have a cabin number and which don't. This is a good indicator of survival as only those who survived could have reported their cabin number. This means that it makes sense to add this binary column to make inferences about the survival.
+# A missing value here means that the passenger did not survive.
 
 func4<-function(y){if(nchar(y)==0){print(0)} else print(1)}
 titanic5<-mutate(titanic4, has_cabin_number=lapply(as.character(titanic4$cabin), func4))
